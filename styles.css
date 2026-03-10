@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-    max-width: 1600px;
+    max-width: 1800px;
     margin: 0 auto;
 }
 
@@ -93,6 +93,67 @@ body {
     fill: #f0f6fc;
 }
 
+/* Table Controls (filters) */
+.table-controls {
+    background-color: #161b22;
+    border-bottom: 1px solid #30363d;
+    padding: 12px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-right: 4px;
+}
+
+.filter-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #8b949e;
+    background-color: transparent;
+    border: 1px solid #30363d;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    color: #c9d1d9;
+    border-color: #8b949e;
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.filter-btn.active {
+    color: #f0f6fc;
+    background-color: #30363d;
+    border-color: #8b949e;
+}
+
+.filter-separator {
+    width: 1px;
+    height: 24px;
+    background-color: #30363d;
+    margin: 0 4px;
+}
+
 /* Table Styles */
 .gpu-table {
     width: 100%;
@@ -100,7 +161,6 @@ body {
     border-spacing: 0;
     font-size: 14px;
     background-color: #161b22;
-    border-radius: 0 0 12px 12px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
@@ -112,7 +172,7 @@ body {
 
 .gpu-table th {
     text-align: left;
-    padding: 16px 20px;
+    padding: 16px 16px;
     font-weight: 600;
     color: #8b949e;
     font-size: 11px;
@@ -132,7 +192,7 @@ body {
 
 /* Body */
 .gpu-table td {
-    padding: 14px 20px;
+    padding: 14px 16px;
     border-bottom: 1px solid #21262d;
     vertical-align: middle;
 }
@@ -157,41 +217,88 @@ body {
     border-bottom: none;
 }
 
-/* Column Widths - GPU column is now much wider */
+/*
+ * Column order (11 columns):
+ * 1: GPU | 2: VRAM | 3: MEM TYPE | 4: BUS | 5: BANDWIDTH
+ * 6: PRICE | 7: $/GB/s | 8: $/GB | 9: VALUE
+ * 10: ARCHITECTURE | 11: STATUS
+ */
+
+/* Column 1: GPU */
 .gpu-table th:nth-child(1),
 .gpu-table td:nth-child(1) {
-    width: 35%;
-    min-width: 300px;
+    width: 22%;
+    min-width: 260px;
 }
 
+/* Column 2: VRAM */
 .gpu-table th:nth-child(2),
 .gpu-table td:nth-child(2) {
-    width: 10%;
-    min-width: 80px;
+    width: 7%;
+    min-width: 70px;
 }
 
+/* Column 3: MEM TYPE */
 .gpu-table th:nth-child(3),
 .gpu-table td:nth-child(3) {
-    width: 10%;
-    min-width: 80px;
+    width: 7%;
+    min-width: 70px;
 }
 
+/* Column 4: BUS */
 .gpu-table th:nth-child(4),
 .gpu-table td:nth-child(4) {
-    width: 10%;
+    width: 7%;
+    min-width: 70px;
+}
+
+/* Column 5: BANDWIDTH */
+.gpu-table th:nth-child(5),
+.gpu-table td:nth-child(5) {
+    width: 16%;
+    min-width: 180px;
+}
+
+/* Column 6: PRICE */
+.gpu-table th:nth-child(6),
+.gpu-table td:nth-child(6) {
+    width: 7%;
     min-width: 80px;
 }
 
-.gpu-table th:nth-child(5),
-.gpu-table td:nth-child(5) {
-    width: 22%;
-    min-width: 200px;
+/* Column 7: $/GB/s */
+.gpu-table th:nth-child(7),
+.gpu-table td:nth-child(7) {
+    width: 5%;
+    min-width: 60px;
 }
 
-.gpu-table th:nth-child(6),
-.gpu-table td:nth-child(6) {
-    width: 13%;
+/* Column 8: $/GB */
+.gpu-table th:nth-child(8),
+.gpu-table td:nth-child(8) {
+    width: 5%;
+    min-width: 50px;
+}
+
+/* Column 9: VALUE */
+.gpu-table th:nth-child(9),
+.gpu-table td:nth-child(9) {
+    width: 11%;
     min-width: 120px;
+}
+
+/* Column 10: ARCHITECTURE */
+.gpu-table th:nth-child(10),
+.gpu-table td:nth-child(10) {
+    width: 9%;
+    min-width: 100px;
+}
+
+/* Column 11: STATUS */
+.gpu-table th:nth-child(11),
+.gpu-table td:nth-child(11) {
+    width: 7%;
+    min-width: 100px;
 }
 
 /* GPU Column Layout */
@@ -287,7 +394,7 @@ body {
     text-align: right;
 }
 
-/* Category bar colors */
+/* Category bar colors (bandwidth) */
 .category-datacenter .bandwidth-bar {
     background: linear-gradient(90deg, #f85149 0%, #ff7b72 100%);
 }
@@ -304,109 +411,111 @@ body {
     background: linear-gradient(90deg, #7c3aed 0%, #a5b4fc 100%);
 }
 
+/* Price & ratio cells */
+.price-cell {
+    color: #f0f6fc;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, monospace;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.price-estimated {
+    color: #8b949e;
+}
+
+.ratio-cell {
+    color: #c9d1d9;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, monospace;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* Value Column */
+.value-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.value-track {
+    flex: 1;
+    height: 8px;
+    background-color: #21262d;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    max-width: 140px;
+}
+
+.value-bar {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #0ea5e9 0%, #22d3ee 100%);
+    transition: width 0.3s ease;
+    min-width: 2px;
+}
+
+.value-score {
+    color: #f0f6fc;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, monospace;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    min-width: 28px;
+    text-align: right;
+}
+
+/* No-price rows (Apple Silicon & unreleased) */
+.no-price .price-cell,
+.no-price .ratio-cell,
+.no-price .value-cell {
+    opacity: 0.4;
+}
+
 /* Architecture cell */
 .arch-cell {
     color: #8b949e;
     font-size: 13px;
 }
 
-/* Header sort indicator */
-.col-bandwidth-header::after {
-    content: ' ▼';
-    font-size: 9px;
-    color: #8b949e;
-    margin-left: 4px;
+/* Sortable column headers */
+.gpu-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    padding-right: 22px;
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .gpu-table th:nth-child(1),
-    .gpu-table td:nth-child(1) {
-        width: 30%;
-        min-width: 250px;
-    }
-    
-    .bandwidth-track {
-        max-width: 150px;
-    }
+.gpu-table th.sortable:hover {
+    color: #c9d1d9;
 }
 
-@media (max-width: 992px) {
-    .gpu-table {
-        font-size: 13px;
-    }
-    
-    .gpu-table th,
-    .gpu-table td {
-        padding: 12px 16px;
-    }
-    
-    .gpu-table th:first-child,
-    .gpu-table td:first-child {
-        padding-left: 20px;
-    }
-    
-    .gpu-table th:last-child,
-    .gpu-table td:last-child {
-        padding-right: 20px;
-    }
-    
-    .bandwidth-track {
-        max-width: 120px;
-    }
+.gpu-table th.sortable::after {
+    content: '⇅';
+    position: absolute;
+    right: 6px;
+    font-size: 10px;
+    color: #484f58;
 }
 
-@media (max-width: 768px) {
-    body {
-        padding: 20px 10px;
-    }
-    
-    .gpu-table {
-        border-radius: 0 0 8px 8px;
-    }
-    
-    .table-header {
-        border-radius: 8px 8px 0 0;
-        padding: 12px 16px;
-    }
+.gpu-table th.sort-asc::after {
+    content: '▲';
+    color: #58a6ff;
+}
 
-    .table-header p {
-        font-size: 12px;
-    }
+.gpu-table th.sort-desc::after {
+    content: '▼';
+    color: #58a6ff;
+}
 
-    .github-icon {
-        width: 24px;
-        height: 24px;
-    }
-    
-    .gpu-table th:nth-child(4),
-    .gpu-table td:nth-child(4) {
-        display: none;
-    }
-    
-    .gpu-table th:nth-child(6),
-    .gpu-table td:nth-child(6) {
-        display: none;
-    }
-    
-    .gpu-table th:nth-child(7),
-    .gpu-table td:nth-child(7) {
-        display: none;
-    }
-    
-    .gpu-table th:nth-child(1),
-    .gpu-table td:nth-child(1) {
-        width: 50%;
-    }
+/* Hidden rows (filtered out) */
+.gpu-table tbody tr.filtered-out {
+    display: none;
 }
 
 /* Status column */
-.gpu-table th:nth-child(7),
-.gpu-table td:nth-child(7) {
-    width: 10%;
-    min-width: 100px;
-}
-
 .status-cell {
     text-align: center;
 }
@@ -433,6 +542,181 @@ body {
     background-color: rgba(210, 153, 34, 0.2);
     color: #ffa657;
     border: 1px solid rgba(210, 153, 34, 0.4);
+}
+
+/* Table Footer */
+.table-footer {
+    background-color: #161b22;
+    border-radius: 0 0 12px 12px;
+    border-top: 1px solid #30363d;
+    padding: 16px 24px;
+}
+
+.table-footer p {
+    margin: 0;
+    font-size: 12px;
+    color: #8b949e;
+    line-height: 1.6;
+}
+
+.table-footer p + p {
+    margin-top: 4px;
+}
+
+/* Responsive Design */
+/*
+ * Breakpoints:
+ * >1400px: all 11 columns
+ * 1200-1400px: hide BUS (4), ARCHITECTURE (10)
+ * 992-1200px: also hide STATUS (11), $/GB (8)
+ * 768-992px: also hide $/GB/s (7), MEM TYPE (3)
+ * <768px: only GPU (1), VRAM (2), BANDWIDTH (5), VALUE (9)
+ */
+
+@media (max-width: 1400px) {
+    /* Hide BUS (4), ARCHITECTURE (10) */
+    .gpu-table th:nth-child(4),
+    .gpu-table td:nth-child(4),
+    .gpu-table th:nth-child(10),
+    .gpu-table td:nth-child(10) {
+        display: none;
+    }
+
+    .bandwidth-track {
+        max-width: 150px;
+    }
+
+    .value-track {
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 1200px) {
+    /* Also hide STATUS (11), $/GB (8) */
+    .gpu-table th:nth-child(11),
+    .gpu-table td:nth-child(11),
+    .gpu-table th:nth-child(8),
+    .gpu-table td:nth-child(8) {
+        display: none;
+    }
+
+    .gpu-table th:nth-child(1),
+    .gpu-table td:nth-child(1) {
+        min-width: 220px;
+    }
+
+    .bandwidth-track {
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 992px) {
+    /* Also hide $/GB/s (7), MEM TYPE (3) */
+    .gpu-table th:nth-child(7),
+    .gpu-table td:nth-child(7),
+    .gpu-table th:nth-child(3),
+    .gpu-table td:nth-child(3) {
+        display: none;
+    }
+
+    .gpu-table {
+        font-size: 13px;
+    }
+
+    .gpu-table th,
+    .gpu-table td {
+        padding: 12px 14px;
+    }
+
+    .gpu-table th:first-child,
+    .gpu-table td:first-child {
+        padding-left: 20px;
+    }
+
+    .gpu-table th:last-child,
+    .gpu-table td:last-child {
+        padding-right: 20px;
+    }
+
+    .bandwidth-track {
+        max-width: 100px;
+    }
+
+    .value-track {
+        max-width: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    .table-controls {
+        padding: 10px 16px;
+        gap: 8px;
+    }
+
+    .filter-separator {
+        display: none;
+    }
+
+    .filter-btn {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+
+    .gpu-table {
+        border-radius: 0;
+    }
+
+    .table-header {
+        border-radius: 8px 8px 0 0;
+        padding: 12px 16px;
+    }
+
+    .table-header p {
+        font-size: 12px;
+    }
+
+    .github-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .table-footer {
+        border-radius: 0 0 8px 8px;
+    }
+
+    /* Hide PRICE (6) — leaves GPU, VRAM, BANDWIDTH, VALUE */
+    .gpu-table th:nth-child(6),
+    .gpu-table td:nth-child(6) {
+        display: none;
+    }
+
+    .gpu-table th:nth-child(1),
+    .gpu-table td:nth-child(1) {
+        width: 40%;
+        min-width: 180px;
+    }
+
+    .bandwidth-track {
+        max-width: 80px;
+    }
+
+    .value-track {
+        max-width: 60px;
+    }
+
+    .gpu-table th,
+    .gpu-table td {
+        padding: 10px 10px;
+    }
+
+    .gpu-table th:first-child,
+    .gpu-table td:first-child {
+        padding-left: 14px;
+    }
 }
 
 /* Subtle glow effect for the table */
