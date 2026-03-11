@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPU Memory Bandwidth Comparison</title>
+    <title>GPU Comparison Chart</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,9 +12,9 @@
             <div class="header-content">
                 <div class="header-text">
                     <p class="credit">Data compiled from various sources. Original concept by <a href="https://reddit.com/user/Blanketsniffer" target="_blank">u/Blanketsniffer</a>.</p>
-                    <p class="opensource">This project is open source. Pull requests welcome! <a href="https://github.com/ReneDotDev/gpu-memory-chart" target="_blank">View on GitHub</a>.</p>
+                    <p class="opensource">This project is open source. Pull requests welcome! <a href="https://github.com/ReneDotDev/gpu-comparison-chart" target="_blank">View on GitHub</a>.</p>
                 </div>
-                <a href="https://github.com/ReneDotDev/gpu-memory-chart" target="_blank" class="github-link" aria-label="View on GitHub">
+                <a href="https://github.com/ReneDotDev/gpu-comparison-chart" target="_blank" class="github-link" aria-label="View on GitHub">
                     <svg class="github-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/>
                     </svg>
@@ -36,6 +36,7 @@
                 <button class="filter-btn active" data-status="all">All</button>
                 <button class="filter-btn" data-status="released">Released</button>
                 <button class="filter-btn" data-status="unreleased">Unreleased</button>
+                <button class="filter-btn" data-status="rumored">Rumored</button>
             </div>
         </div>
         <table class="gpu-table">
@@ -47,26 +48,14 @@
                     <th class="sortable" data-col="3">BUS</th>
                     <th class="sortable sort-desc" data-col="4">BANDWIDTH (GB/s)</th>
                     <th class="sortable" data-col="5">PRICE (USD)</th>
-                    <th class="sortable" data-col="6">$/GB/s</th>
-                    <th class="sortable" data-col="7">$/GB</th>
-                    <th class="sortable" data-col="8">VALUE</th>
-                    <th class="sortable" data-col="9">ARCHITECTURE</th>
-                    <th class="sortable" data-col="10">STATUS</th>
+                    <th class="sortable" data-col="6">ARCHITECTURE</th>
+                    <th class="sortable" data-col="7">STATUS</th>
                 </tr>
             </thead>
             <!--
                 Pricing data as of March 2026.
                 Consumer GPUs: MSRP. Data center GPUs: estimated street price (~).
                 Apple Silicon & unreleased GPUs: excluded from pricing.
-
-                Value Score Formula:
-                  bw_eff  = bandwidth_GBps / price_USD
-                  vram_eff = vram_GB / price_USD
-                  Normalize each to [0,1] via min-max across all priced GPUs.
-                  VALUE = round((0.5 * norm_bw + 0.5 * norm_vram) * 100)
-
-                  bw_eff range:  [0.10800 (L40S) .. 1.29259 (RX 9070)]
-                  vram_eff range: [0.00320 (H100 SXM) .. 0.03206 (RX 9070)]
             -->
             <tbody>
                 <tr class="category-datacenter no-price">
@@ -88,13 +77,7 @@
                         </div>
                     </td>
                     <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Rubin (H2 2026)</td>
                     <td class="status-cell"><span class="status-unreleased">UNRELEASED</span></td>
                 </tr>
@@ -117,16 +100,7 @@
                         </div>
                     </td>
                     <td class="price-cell price-estimated">~$45,000</td>
-                    <td class="ratio-cell">$5.63</td>
-                    <td class="ratio-cell">$234</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 3%;"></div>
-                            </div>
-                            <span class="value-score">3</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Blackwell</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -149,13 +123,7 @@
                         </div>
                     </td>
                     <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Blackwell Ultra</td>
                     <td class="status-cell"><span class="status-unreleased">UNRELEASED</span></td>
                 </tr>
@@ -178,16 +146,7 @@
                         </div>
                     </td>
                     <td class="price-cell price-estimated">~$15,000</td>
-                    <td class="ratio-cell">$2.83</td>
-                    <td class="ratio-cell">$78</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 27%;"></div>
-                            </div>
-                            <span class="value-score">27</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">CDNA 3</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -210,16 +169,7 @@
                         </div>
                     </td>
                     <td class="price-cell price-estimated">~$35,000</td>
-                    <td class="ratio-cell">$7.29</td>
-                    <td class="ratio-cell">$248</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 1%;"></div>
-                            </div>
-                            <span class="value-score">1</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Hopper</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -242,16 +192,7 @@
                         </div>
                     </td>
                     <td class="price-cell price-estimated">~$25,000</td>
-                    <td class="ratio-cell">$7.35</td>
-                    <td class="ratio-cell">$313</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 1%;"></div>
-                            </div>
-                            <span class="value-score">1</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Hopper</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -274,16 +215,7 @@
                         </div>
                     </td>
                     <td class="price-cell price-estimated">~$10,000</td>
-                    <td class="ratio-cell">$5.00</td>
-                    <td class="ratio-cell">$125</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 12%;"></div>
-                            </div>
-                            <span class="value-score">12</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Ampere</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -306,16 +238,7 @@
                         </div>
                     </td>
                     <td class="price-cell">$1,999</td>
-                    <td class="ratio-cell">$1.11</td>
-                    <td class="ratio-cell">$62</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 56%;"></div>
-                            </div>
-                            <span class="value-score">56</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Blackwell</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -338,16 +261,7 @@
                         </div>
                     </td>
                     <td class="price-cell">$1,599</td>
-                    <td class="ratio-cell">$1.60</td>
-                    <td class="ratio-cell">$67</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 42%;"></div>
-                            </div>
-                            <span class="value-score">42</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Ada Lovelace</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -370,16 +284,7 @@
                         </div>
                     </td>
                     <td class="price-cell">$999</td>
-                    <td class="ratio-cell">$1.04</td>
-                    <td class="ratio-cell">$62</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 58%;"></div>
-                            </div>
-                            <span class="value-score">58</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Blackwell</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -402,16 +307,7 @@
                         </div>
                     </td>
                     <td class="price-cell">$999</td>
-                    <td class="ratio-cell">$1.04</td>
-                    <td class="ratio-cell">$42</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 72%;"></div>
-                            </div>
-                            <span class="value-score">72</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">RDNA 3</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -434,16 +330,7 @@
                         </div>
                     </td>
                     <td class="price-cell">$6,800</td>
-                    <td class="ratio-cell">$7.08</td>
-                    <td class="ratio-cell">$142</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 8%;"></div>
-                            </div>
-                            <span class="value-score">8</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Ada Lovelace</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -466,16 +353,7 @@
                         </div>
                     </td>
                     <td class="price-cell">$749</td>
-                    <td class="ratio-cell">$0.84</td>
-                    <td class="ratio-cell">$47</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 77%;"></div>
-                            </div>
-                            <span class="value-score">77</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Blackwell</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -498,20 +376,34 @@
                         </div>
                     </td>
                     <td class="price-cell price-estimated">~$8,000</td>
-                    <td class="ratio-cell">$9.26</td>
-                    <td class="ratio-cell">$167</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 5%;"></div>
-                            </div>
-                            <span class="value-score">5</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Ada Lovelace</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
                 <tr class="category-apple no-price">
+                    <td>
+                        <div class="gpu-cell">
+                            <span class="gpu-name">Apple M5 Ultra (84-core GPU)</span>
+                            <span class="tag tag-apple">APPLE SILICON</span>
+                        </div>
+                    </td>
+                    <td class="data-cell">Up to 512 GB</td>
+                    <td class="data-cell">LPDDR5X</td>
+                    <td class="data-cell">Unified</td>
+                    <td>
+                        <div class="bandwidth-cell">
+                            <div class="bandwidth-track">
+                                <div class="bandwidth-bar" style="width: 7.7%;"></div>
+                            </div>
+                            <span class="bandwidth-value">1.0 TB/s</span>
+                        </div>
+                    </td>
+                    <td class="price-cell">---</td>
+                    
+                    <td class="arch-cell">M5 Ultra</td>
+                    <td class="status-cell"><span class="status-rumored">RUMORED</span></td>
+                </tr>
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M3 Ultra (80-core GPU)</span>
@@ -529,18 +421,12 @@
                             <span class="bandwidth-value">819 GB/s</span>
                         </div>
                     </td>
-                    <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    <td class="price-cell">$5,499</td>
+                    
                     <td class="arch-cell">M3 Ultra</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M3 Ultra (60-core GPU)</span>
@@ -558,14 +444,8 @@
                             <span class="bandwidth-value">819 GB/s</span>
                         </div>
                     </td>
-                    <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    <td class="price-cell">$3,999</td>
+                    
                     <td class="arch-cell">M3 Ultra</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -588,20 +468,11 @@
                         </div>
                     </td>
                     <td class="price-cell">$899</td>
-                    <td class="ratio-cell">$1.12</td>
-                    <td class="ratio-cell">$45</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 66%;"></div>
-                            </div>
-                            <span class="value-score">66</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">RDNA 3</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M2 Ultra (76-core GPU)</span>
@@ -619,18 +490,12 @@
                             <span class="bandwidth-value">800 GB/s</span>
                         </div>
                     </td>
-                    <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    <td class="price-cell">$3,999</td>
+                    
                     <td class="arch-cell">M2 Ultra</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M2 Ultra (60-core GPU)</span>
@@ -648,18 +513,12 @@
                             <span class="bandwidth-value">800 GB/s</span>
                         </div>
                     </td>
-                    <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    <td class="price-cell">$3,999</td>
+                    
                     <td class="arch-cell">M2 Ultra</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M1 Ultra</span>
@@ -677,14 +536,8 @@
                             <span class="bandwidth-value">800 GB/s</span>
                         </div>
                     </td>
-                    <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    <td class="price-cell">$3,999</td>
+                    
                     <td class="arch-cell">M1 Ultra</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -707,16 +560,7 @@
                         </div>
                     </td>
                     <td class="price-cell">$999</td>
-                    <td class="ratio-cell">$1.36</td>
-                    <td class="ratio-cell">$62</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 49%;"></div>
-                            </div>
-                            <span class="value-score">49</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Ada Lovelace</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -739,16 +583,7 @@
                         </div>
                     </td>
                     <td class="price-cell">$549</td>
-                    <td class="ratio-cell">$0.82</td>
-                    <td class="ratio-cell">$46</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 79%;"></div>
-                            </div>
-                            <span class="value-score">79</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Blackwell</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -771,16 +606,7 @@
                         </div>
                     </td>
                     <td class="price-cell">$799</td>
-                    <td class="ratio-cell">$1.19</td>
-                    <td class="ratio-cell">$50</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 60%;"></div>
-                            </div>
-                            <span class="value-score">60</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">Ada Lovelace</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -803,16 +629,7 @@
                         </div>
                     </td>
                     <td class="price-cell">$549</td>
-                    <td class="ratio-cell">$0.85</td>
-                    <td class="ratio-cell">$34</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 90%;"></div>
-                            </div>
-                            <span class="value-score">90</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">RDNA 4</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
@@ -835,20 +652,11 @@
                         </div>
                     </td>
                     <td class="price-cell">$499</td>
-                    <td class="ratio-cell">$0.77</td>
-                    <td class="ratio-cell">$31</td>
-                    <td>
-                        <div class="value-cell">
-                            <div class="value-track">
-                                <div class="value-bar" style="width: 100%;"></div>
-                            </div>
-                            <span class="value-score">100</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">RDNA 4</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M5 Max (40-core GPU)</span>
@@ -867,17 +675,11 @@
                         </div>
                     </td>
                     <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">M5</td>
                     <td class="status-cell"><span class="status-unreleased">UNRELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M4 Max (40-core GPU)</span>
@@ -895,18 +697,12 @@
                             <span class="bandwidth-value">546 GB/s</span>
                         </div>
                     </td>
-                    <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    <td class="price-cell">$2,499</td>
+                    
                     <td class="arch-cell">M4</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M5 Max (32-core GPU)</span>
@@ -925,17 +721,11 @@
                         </div>
                     </td>
                     <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">M5</td>
                     <td class="status-cell"><span class="status-unreleased">UNRELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M4 Max (32-core GPU)</span>
@@ -953,18 +743,12 @@
                             <span class="bandwidth-value">410 GB/s</span>
                         </div>
                     </td>
-                    <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    <td class="price-cell">$1,999</td>
+                    
                     <td class="arch-cell">M4</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M5 Pro</span>
@@ -983,17 +767,11 @@
                         </div>
                     </td>
                     <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">M5</td>
                     <td class="status-cell"><span class="status-unreleased">UNRELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M4 Pro</span>
@@ -1011,18 +789,12 @@
                             <span class="bandwidth-value">273 GB/s</span>
                         </div>
                     </td>
-                    <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    <td class="price-cell">$1,299</td>
+                    
                     <td class="arch-cell">M4</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M5</span>
@@ -1041,17 +813,11 @@
                         </div>
                     </td>
                     <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    
                     <td class="arch-cell">M5</td>
                     <td class="status-cell"><span class="status-unreleased">UNRELEASED</span></td>
                 </tr>
-                <tr class="category-apple no-price">
+                <tr class="category-apple has-price">
                     <td>
                         <div class="gpu-cell">
                             <span class="gpu-name">Apple M4</span>
@@ -1069,23 +835,15 @@
                             <span class="bandwidth-value">120 GB/s</span>
                         </div>
                     </td>
-                    <td class="price-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td class="ratio-cell">---</td>
-                    <td>
-                        <div class="value-cell">
-                            <span class="value-score">---</span>
-                        </div>
-                    </td>
+                    <td class="price-cell">$599</td>
+                    
                     <td class="arch-cell">M4</td>
                     <td class="status-cell"><span class="status-released">RELEASED</span></td>
                 </tr>
             </tbody>
         </table>
         <div class="table-footer">
-            <p>Prices as of March 2026. Consumer GPU prices are MSRP. Data center prices (~) are approximate street prices.</p>
-            <p>Value score (0–100) = 50% bandwidth efficiency (GB/s per $) + 50% VRAM efficiency (GB per $), normalized across all priced GPUs. Higher is better.</p>
-            <p>Apple Silicon excluded from pricing — system pricing is not comparable to discrete GPU pricing.</p>
+            <p>Last updated March 11, 2026</p>
         </div>
     </div>
     <script>
@@ -1103,9 +861,11 @@
                 const classes = row.className;
                 const matchCategory = activeCategory === 'all' || classes.includes('category-' + activeCategory);
                 const isUnreleased = row.querySelector('.status-unreleased');
+                const isRumored = row.querySelector('.status-rumored');
                 const matchStatus = activeStatus === 'all'
-                    || (activeStatus === 'unreleased' && isUnreleased)
-                    || (activeStatus === 'released' && !isUnreleased);
+                    || (activeStatus === 'unreleased' && isUnreleased && !isRumored)
+                    || (activeStatus === 'released' && !isUnreleased && !isRumored)
+                    || (activeStatus === 'rumored' && isRumored);
                 row.classList.toggle('filtered-out', !(matchCategory && matchStatus));
             });
         }
