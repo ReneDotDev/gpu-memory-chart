@@ -218,10 +218,9 @@ body {
 }
 
 /*
- * Column order (11 columns):
+ * Column order (9 columns):
  * 1: GPU | 2: VRAM | 3: MEM TYPE | 4: BUS | 5: BANDWIDTH
- * 6: PRICE | 7: $/GB/s | 8: $/GB | 9: VALUE
- * 10: ARCHITECTURE | 11: STATUS
+ * 6: PRICE | 7: VALUE | 8: ARCHITECTURE | 9: STATUS
  */
 
 /* Column 1: GPU */
@@ -266,37 +265,23 @@ body {
     min-width: 80px;
 }
 
-/* Column 7: $/GB/s */
+/* Column 7: VALUE */
 .gpu-table th:nth-child(7),
 .gpu-table td:nth-child(7) {
-    width: 5%;
-    min-width: 60px;
-}
-
-/* Column 8: $/GB */
-.gpu-table th:nth-child(8),
-.gpu-table td:nth-child(8) {
-    width: 5%;
-    min-width: 50px;
-}
-
-/* Column 9: VALUE */
-.gpu-table th:nth-child(9),
-.gpu-table td:nth-child(9) {
     width: 11%;
     min-width: 120px;
 }
 
-/* Column 10: ARCHITECTURE */
-.gpu-table th:nth-child(10),
-.gpu-table td:nth-child(10) {
+/* Column 8: ARCHITECTURE */
+.gpu-table th:nth-child(8),
+.gpu-table td:nth-child(8) {
     width: 9%;
     min-width: 100px;
 }
 
-/* Column 11: STATUS */
-.gpu-table th:nth-child(11),
-.gpu-table td:nth-child(11) {
+/* Column 9: STATUS */
+.gpu-table th:nth-child(9),
+.gpu-table td:nth-child(9) {
     width: 7%;
     min-width: 100px;
 }
@@ -424,14 +409,6 @@ body {
     color: #8b949e;
 }
 
-.ratio-cell {
-    color: #c9d1d9;
-    font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, monospace;
-    font-size: 13px;
-    font-weight: 400;
-    white-space: nowrap;
-}
-
 /* Value Column */
 .value-cell {
     display: flex;
@@ -469,7 +446,6 @@ body {
 
 /* No-price rows (Apple Silicon & unreleased) */
 .no-price .price-cell,
-.no-price .ratio-cell,
 .no-price .value-cell {
     opacity: 0.4;
 }
@@ -566,19 +542,19 @@ body {
 /* Responsive Design */
 /*
  * Breakpoints:
- * >1400px: all 11 columns
- * 1200-1400px: hide BUS (4), ARCHITECTURE (10)
- * 992-1200px: also hide STATUS (11), $/GB (8)
- * 768-992px: also hide $/GB/s (7), MEM TYPE (3)
- * <768px: only GPU (1), VRAM (2), BANDWIDTH (5), VALUE (9)
+ * >1400px: all 9 columns
+ * 1200-1400px: hide BUS (4), ARCHITECTURE (8)
+ * 992-1200px: also hide STATUS (9)
+ * 768-992px: also hide MEM TYPE (3)
+ * <768px: only GPU (1), VRAM (2), BANDWIDTH (5), VALUE (7)
  */
 
 @media (max-width: 1400px) {
-    /* Hide BUS (4), ARCHITECTURE (10) */
+    /* Hide BUS (4), ARCHITECTURE (8) */
     .gpu-table th:nth-child(4),
     .gpu-table td:nth-child(4),
-    .gpu-table th:nth-child(10),
-    .gpu-table td:nth-child(10) {
+    .gpu-table th:nth-child(8),
+    .gpu-table td:nth-child(8) {
         display: none;
     }
 
@@ -592,11 +568,9 @@ body {
 }
 
 @media (max-width: 1200px) {
-    /* Also hide STATUS (11), $/GB (8) */
-    .gpu-table th:nth-child(11),
-    .gpu-table td:nth-child(11),
-    .gpu-table th:nth-child(8),
-    .gpu-table td:nth-child(8) {
+    /* Also hide STATUS (9) */
+    .gpu-table th:nth-child(9),
+    .gpu-table td:nth-child(9) {
         display: none;
     }
 
@@ -611,9 +585,7 @@ body {
 }
 
 @media (max-width: 992px) {
-    /* Also hide $/GB/s (7), MEM TYPE (3) */
-    .gpu-table th:nth-child(7),
-    .gpu-table td:nth-child(7),
+    /* Also hide MEM TYPE (3) */
     .gpu-table th:nth-child(3),
     .gpu-table td:nth-child(3) {
         display: none;
