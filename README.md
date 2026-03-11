@@ -1,8 +1,16 @@
-# GPU Memory Bandwidth Comparison
+# GPU Comparison Chart
 
-An interactive comparison table of GPU memory bandwidth across various graphics cards, from data center GPUs to consumer cards and Apple Silicon.
+An interactive comparison table of GPU specifications across various graphics cards, from data center GPUs to consumer cards and Apple Silicon.
 
-**View the live site:** https://renedotdev.github.io/gpu-memory-chart
+**View the live site:** https://renedotdev.github.io/gpu-comparison-chart
+
+## Features
+
+- **Comprehensive GPU Database**: Compare 70+ GPUs across data center, consumer, workstation, and Apple Silicon categories
+- **Sortable Columns**: Sort by bandwidth, price, VRAM, architecture, and more
+- **Filter by Category**: Filter to show only Data Center, Consumer, Workstation, or Apple Silicon GPUs
+- **Filter by Status**: Show Released, Unreleased, or Rumored products
+- **Visual Bandwidth Indicator**: Quick visual reference for memory bandwidth comparison
 
 ## Credits
 
