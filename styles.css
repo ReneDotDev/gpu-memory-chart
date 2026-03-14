@@ -228,9 +228,9 @@ body {
 }
 
 /*
- * Column order (8 columns):
+ * Column order (9 columns):
  * 1: GPU | 2: VRAM | 3: MEM TYPE | 4: BUS | 5: BANDWIDTH
- * 6: PRICE | 7: ARCHITECTURE | 8: STATUS
+ * 6: ARCHITECTURE | 7: STATUS | 8: PRICE | 9: $/HR
  */
 
 /* Column 1: GPU */
@@ -257,7 +257,7 @@ body {
 /* Column 4: BUS */
 .gpu-table th:nth-child(4),
 .gpu-table td:nth-child(4) {
-    width: 7%;
+    width: 6%;
     min-width: 70px;
 }
 
@@ -268,25 +268,32 @@ body {
     min-width: 180px;
 }
 
-/* Column 6: PRICE */
+/* Column 6: ARCHITECTURE */
 .gpu-table th:nth-child(6),
 .gpu-table td:nth-child(6) {
-    width: 7%;
-    min-width: 80px;
-}
-
-/* Column 7: ARCHITECTURE */
-.gpu-table th:nth-child(7),
-.gpu-table td:nth-child(7) {
     width: 9%;
     min-width: 100px;
 }
 
-/* Column 8: STATUS */
-.gpu-table th:nth-child(8),
-.gpu-table td:nth-child(8) {
+/* Column 7: STATUS */
+.gpu-table th:nth-child(7),
+.gpu-table td:nth-child(7) {
     width: 7%;
     min-width: 100px;
+}
+
+/* Column 8: PRICE */
+.gpu-table th:nth-child(8),
+.gpu-table td:nth-child(8) {
+    width: 6%;
+    min-width: 65px;
+}
+
+/* Column 9: $/HR */
+.gpu-table th:nth-child(9),
+.gpu-table td:nth-child(9) {
+    width: 5%;
+    min-width: 65px;
 }
 
 /* GPU Column Layout */
@@ -436,7 +443,7 @@ body {
 }
 
 .gpu-table th.sortable::after {
-    content: '⇅';
+    content: '\21C5';
     position: absolute;
     right: 6px;
     font-size: 10px;
@@ -444,12 +451,12 @@ body {
 }
 
 .gpu-table th.sort-asc::after {
-    content: '▲';
+    content: '\25B2';
     color: #58a6ff;
 }
 
 .gpu-table th.sort-desc::after {
-    content: '▼';
+    content: '\25BC';
     color: #58a6ff;
 }
 
@@ -515,20 +522,18 @@ body {
 
 /* Responsive Design */
 /*
- * Breakpoints:
- * >1400px: all 8 columns
- * 1200-1400px: hide BUS (4), ARCHITECTURE (7)
- * 992-1200px: also hide STATUS (8)
+ * Responsive breakpoints (9 columns):
+ * >1400px: all 9 columns
+ * 1200-1400px: hide BUS (4)
+ * 992-1200px: also hide ARCHITECTURE (6), STATUS (7)
  * 768-992px: also hide MEM TYPE (3)
- * <768px: only GPU (1), VRAM (2), BANDWIDTH (5), PRICE (6)
+ * <768px: also hide PRICE (8), $/HR (9) — leaves GPU, VRAM, BANDWIDTH
  */
 
 @media (max-width: 1400px) {
-    /* Hide BUS (4), ARCHITECTURE (7) */
+    /* Hide BUS (4) */
     .gpu-table th:nth-child(4),
-    .gpu-table td:nth-child(4),
-    .gpu-table th:nth-child(7),
-    .gpu-table td:nth-child(7) {
+    .gpu-table td:nth-child(4) {
         display: none;
     }
 
@@ -538,9 +543,11 @@ body {
 }
 
 @media (max-width: 1200px) {
-    /* Also hide STATUS (8) */
-    .gpu-table th:nth-child(8),
-    .gpu-table td:nth-child(8) {
+    /* Also hide ARCHITECTURE (6), STATUS (7) */
+    .gpu-table th:nth-child(6),
+    .gpu-table td:nth-child(6),
+    .gpu-table th:nth-child(7),
+    .gpu-table td:nth-child(7) {
         display: none;
     }
 
@@ -626,11 +633,11 @@ body {
         border-radius: 0 0 8px 8px;
     }
 
-    /* Hide ARCHITECTURE (7), STATUS (8) — leaves GPU, VRAM, BANDWIDTH, PRICE */
-    .gpu-table th:nth-child(7),
-    .gpu-table td:nth-child(7),
+    /* Hide PRICE (8), $/HR (9) — leaves GPU, VRAM, BANDWIDTH */
     .gpu-table th:nth-child(8),
-    .gpu-table td:nth-child(8) {
+    .gpu-table td:nth-child(8),
+    .gpu-table th:nth-child(9),
+    .gpu-table td:nth-child(9) {
         display: none;
     }
 
