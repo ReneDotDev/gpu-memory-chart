@@ -2,7 +2,7 @@
 
 An interactive comparison table of GPU memory bandwidth across various graphics cards, from data center GPUs to consumer cards and Apple Silicon.
 
-**View the live site:** https://renedotdev.github.io/gpu-memory-chart
+**View the live site:** https://renedotdev.github.io/gpu-comparison-chart
 
 ## Credits
 
