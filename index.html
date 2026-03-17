@@ -2127,15 +2127,24 @@
 
                 // Get all data rows (category-*) and their associated expandable rows
                 const allRows = Array.from(tbody.querySelectorAll('tr'));
-                const dataRows = allRows.filter(row => row.classList.contains('category-datacenter') || 
-                                                         row.classList.contains('category-consumer') || 
-                                                         row.classList.contains('category-workstation') || 
-                                                         row.classList.contains('category-apple'));
                 
-                // Sort only the data rows
-                dataRows.sort((a, b) => {
-                    const aVal = parseVal(a.cells[col], col);
-                    const bVal = parseVal(b.cells[col], col);
+                // Create pairs of data rows with their expandable rows BEFORE sorting
+                // This ensures we maintain the correct relationship after rows are moved
+                const rowPairs = [];
+                allRows.forEach(row => {
+                    if (row.classList.contains('category-datacenter') || 
+                        row.classList.contains('category-consumer') || 
+                        row.classList.contains('category-workstation') || 
+                        row.classList.contains('category-apple')) {
+                        const expandableRow = row.nextElementSibling;
+                        rowPairs.push({ dataRow: row, expandableRow: expandableRow });
+                    }
+                });
+                
+                // Sort the pairs based on the data row's value
+                rowPairs.sort((a, b) => {
+                    const aVal = parseVal(a.dataRow.cells[col], col);
+                    const bVal = parseVal(b.dataRow.cells[col], col);
                     if (typeof aVal === 'string' && typeof bVal === 'string') {
                         return dir === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
                     }
@@ -2143,11 +2152,10 @@
                 });
                 
                 // Re-append sorted data rows along with their expandable rows
-                dataRows.forEach(dataRow => {
-                    tbody.appendChild(dataRow);
-                    const expandableRow = dataRow.nextElementSibling;
-                    if (expandableRow && expandableRow.classList.contains('expandable-row')) {
-                        tbody.appendChild(expandableRow);
+                rowPairs.forEach(pair => {
+                    tbody.appendChild(pair.dataRow);
+                    if (pair.expandableRow && pair.expandableRow.classList.contains('expandable-row')) {
+                        tbody.appendChild(pair.expandableRow);
                     }
                 });
             });
